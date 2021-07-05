@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int uniqueMorseRepresentations(vector<string>& words) {
+        vector<string> a{ ".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--", "--.." };
+        
+        int count = 0;
+        unordered_set<string> hash;
+        for(int i=0; i<words.size(); i++){
+            string temp ="";
+            for(int j=0; j<words[i].size(); j++){
+                temp+=a[words[i][j]-'a'];
+            }
+            hash.insert(temp);
+        }
+        count = hash.size();
+        return count;
+    }
+};
