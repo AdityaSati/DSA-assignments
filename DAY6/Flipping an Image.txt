@@ -1,0 +1,22 @@
+class Solution {
+public:
+    void rev(vector<vector<int>>& image, int i){
+        int l=0,r=image[0].size()-1;
+        while(l<r){
+            int temp=image[i][l];
+            image[i][l]=image[i][r];
+            image[i][r]=temp;
+            l++;
+            r--;
+        }
+    }
+    
+    vector<vector<int>> flipAndInvertImage(vector<vector<int>>& image) {
+        for(int i=0;i<image.size();i++){
+            rev(image,i);
+            for(int j=0;j<image[0].size();j++)
+                image[i][j]=1-image[i][j];
+        }
+        return image;
+    }
+};
