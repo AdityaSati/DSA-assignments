@@ -1,0 +1,21 @@
+class Solution {
+public:
+    vector<int> luckyNumbers (vector<vector<int>>& matrix) {
+        vector<int>res;
+        for(int i=0;i<matrix.size();i++){
+            auto it= min_element(matrix[i].begin(),matrix[i].end());
+            
+            int pos=it-matrix[i].begin();
+            int mx=0;
+            for(int j=0;j<matrix.size();j++){
+                if(matrix[j][pos]>mx)
+                    mx=matrix[j][pos];
+            }
+            if(*it == mx){
+                res.push_back(mx);
+                break;
+            }
+        }
+        return res;
+    }
+};
