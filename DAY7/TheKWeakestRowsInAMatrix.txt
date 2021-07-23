@@ -1,0 +1,31 @@
+class Solution {
+public:
+    int bs(vector<vector<int>>& mat, int left, int right,int i){
+        int c=right+1,mid;
+        while(left<=right){
+            mid=left+(right-left)/2;
+            if(mat[i][mid]==0){
+                c=mid;
+                right=mid-1;
+            }
+            else{
+                left=mid+1;
+            }
+        }
+        return c;
+    }
+    
+    vector<int> kWeakestRows(vector<vector<int>>& mat, int k) {
+        vector<int>res;
+        int m=mat.size(),n=mat[0].size();
+        set<pair<int,int> >pa;
+        for(int i=0;i<m;i++){
+            int c= bs(mat,0,n-1,i);
+            pa.insert({c,i});
+        }
+        // sort(pa.begin(),pa.end());
+        for(auto it=pa.begin();k>0;it++,k--)
+            res.push_back(it->second);
+        return res;
+        }
+};
