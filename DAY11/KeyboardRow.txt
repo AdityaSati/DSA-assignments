@@ -1,0 +1,28 @@
+class Solution {
+public:
+    vector<string> findWords(vector<string>& words) {
+        vector<string> res;
+        string st1="qwertyuiop";
+        string st2="asdfghjkl";
+        string st3="zxcvbnm";
+        for(int i=0;i<words.size();i++){
+            int s=words[i].length();
+            cout<<s;
+            int c1=0,c2=0,c3=0;
+            for(int j=0;j<s;j++){
+                if(c2==0 && c3==0 && st1.find(tolower(words[i][j]))!=-1)
+                    c1++;
+                else if(c1==0 && c3==0 && st2.find(tolower(words[i][j]))!=-1)
+                    c2++;
+                else if(c1==0 && c2==0 && st3.find(tolower(words[i][j]))!=-1)
+                    c3++;
+                else
+                    break;
+            }
+            cout<<endl<<c1<<" "<<c2<<" "<<c3<<endl;
+            if(c1==s || c2==s || c3==s)
+                res.push_back(words[i]);
+        }
+        return res;
+    }
+};
